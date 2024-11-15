@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myapplication.ui.theme.buttonBackground
+import com.example.myapplication.ui.theme.green
 
 @Composable
 fun Profile(navController: NavController) {
@@ -91,11 +92,11 @@ fun Profile(navController: NavController) {
         Spacer(modifier = Modifier.weight(1f))
         Button(
             onClick = {
-                sharedPreferences.edit().clear().apply()
                 navController.navigate(Onboarding.route)
+                sharedPreferences.edit().clear().apply()
             },
             colors = ButtonDefaults.buttonColors(
-                containerColor = if(isPressed) Color.Blue else buttonBackground,
+                containerColor = if(isPressed) green else buttonBackground,
                 contentColor = Color.Black),
             interactionSource = interactionSource,
             shape = RoundedCornerShape(10.dp),

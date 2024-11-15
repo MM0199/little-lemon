@@ -16,8 +16,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myapplication.ui.theme.buttonBackground
-import com.example.myapplication.ui.theme.textBackground
+import com.example.myapplication.ui.theme.green
 
 fun saveUserData(context: Context, firstName: String, lastName: String, email: String) {
     val sharedPreferences = context.getSharedPreferences("user_data", Context.MODE_PRIVATE)
@@ -45,6 +47,7 @@ fun saveUserData(context: Context, firstName: String, lastName: String, email: S
     editor.apply()
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Onboarding(navController: NavController) {
     var firstName by remember { mutableStateOf("") }
@@ -71,7 +74,7 @@ fun Onboarding(navController: NavController) {
             color = Color.White,
             textAlign = TextAlign.Center,
             modifier = Modifier
-                .background(textBackground)
+                .background(green)
                 .padding(top = 50.dp)
                 .fillMaxWidth()
                 .height(80.dp)
@@ -91,6 +94,12 @@ fun Onboarding(navController: NavController) {
                 onValueChange = {firstName = it},
                 label = { Text("First Name")},
                 placeholder = { Text("Enter your first name")},
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = green,
+                    unfocusedBorderColor = Color.Black,
+                    focusedLabelColor = green,
+                    unfocusedLabelColor = Color.Black
+                ),
                 singleLine = true,
                 modifier = Modifier
                     .padding(start = 10.dp, end = 10.dp, top = 10.dp, bottom = 25.dp)
@@ -101,6 +110,12 @@ fun Onboarding(navController: NavController) {
                 onValueChange = {lastName = it},
                 label = { Text("Last Name")},
                 placeholder = { Text("Enter your last name")},
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = green,
+                    unfocusedBorderColor = Color.Black,
+                    focusedLabelColor = green,
+                    unfocusedLabelColor = Color.Black
+                ),
                 singleLine = true,
                 modifier = Modifier
                     .padding(start = 10.dp, end = 10.dp, top = 10.dp, bottom = 25.dp)
@@ -111,6 +126,12 @@ fun Onboarding(navController: NavController) {
                 onValueChange = {email = it},
                 label = { Text("Email")},
                 placeholder = { Text("Enter your email")},
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = green,
+                    unfocusedBorderColor = Color.Black,
+                    focusedLabelColor = green,
+                    unfocusedLabelColor = Color.Black
+                ),
                 singleLine = true,
                 modifier = Modifier
                     .padding(10.dp)
@@ -128,7 +149,7 @@ fun Onboarding(navController: NavController) {
                 }
             },
             colors = ButtonDefaults.buttonColors(
-                containerColor = if(isPressed) Color.Blue else buttonBackground,
+                containerColor = if(isPressed) green else buttonBackground,
                 contentColor = Color.Black),
             interactionSource = interactionSource,
             shape = RoundedCornerShape(10.dp),
